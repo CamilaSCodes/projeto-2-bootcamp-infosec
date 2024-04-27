@@ -51,6 +51,8 @@ As atribuições de interface e de IP podem ser feitas com as opções 1 e 2 do 
 
 No menu, vá para **Interfaces > Interface Assignments** e certifique-se de que todas as interfaces estejam adicionadas e configuradas corretamente. Para este projeto, o único IP que será alterado conforme o usuário é o da interface INTERNET, pois a placa está no modo Bridge.
 
+<p align="center">
+  <img src="https://github.com/CamilaSCodes/projeto-2-bootcamp-infosec/blob/main/imagens_projeto2/interfaces.png?raw=true" alt="interfaces" />
+</p>
 
-
-
+Para permitir a instalação de pacotes e configuração inicial das demais máquinas sem que o firewall bloqueie o tráfego, navegue no menu em **Firewall > Rules**. Em cada uma das interfaces, clique em :arrow_heading_up: **Add**, altere o campo <ins>Protocol</ins> de TCP para Any e clique em :floppy_disk: **Save** ao final da página. Confirme clicando em :white_check_mark: **Apply Changes**.
