@@ -3,12 +3,12 @@
 
 Este repositório contém o passo a passo referente ao desenvolvimento e implementação de uma solução abrangente de segurança de rede, que integre um firewall, um Web Application Firewall (WAF) e um Sistema de Informações e Eventos de Segurança (SIEM). O objetivo é aplicar na prática os conhecimentos adquiridos na plataforma Alura durante o Bootcamp em Segurança da Informação, configurando políticas de segurança, detectando e respondendo a ameaças, e criando painéis de monitoramento para garantir a integridade e a segurança da rede.	
 
-![esquema de rede](https://github.com/CamilaSCodes/projeto-2-bootcamp-infosec/blob/main/imagens_projeto2/rede-segura.jpg?raw=true)
-
 ## Briefing do projeto
 Neste projeto, a **intranet** é acessada pelos desenvolvedores e é hospedada em servidores específicos, como o servidor de dados (**Database**) e o **servidor web**. Um **Firewall** atua como intermediário do tráfego, implementando regras de segurança, com sistemas de detecção e prevenção de intrusões (**IDS** e **IPS**) integrados para identificar e impedir possíveis ataques. Adicionalmente, um **WAF** opera como um **proxy reverso**, recebendo as requisições e ocultando o IP privado para a rede pública.
 
 Além disso, o sistema conta com o mecanismo **DMZ** (Demilitarized Zone), onde a rede externa é segregada da interna. A porção externa está voltada para a internet, onde o WAF é localizado, enquanto a porção interna engloba o Database (DMZ Banco) e o servidor web (DMZ Web). Em suma, o sistema é dividido em zonas distintas: a zona externa, onde está o WAF, e a zona interna, onde estão localizados o Database e o servidor web. Esta segmentação em sub-redes é essencial para mitigar os riscos de ataques, impedindo que um eventual ataque tenha acesso irrestrito às informações do sistema.
+
+![esquema de rede](https://github.com/CamilaSCodes/projeto-2-bootcamp-infosec/blob/main/imagens_projeto2/rede-segura.jpg?raw=true)
 
 ### Requisitos
 - Virtualização de quatro máquinas: WAF, Server, Firewall e SIEM
