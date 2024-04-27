@@ -59,5 +59,3 @@ No menu, vá para **Interfaces > Interface Assignments** e certifique-se de que 
 
 Seguindo uma boa prática na configuração de firewalls, recomenda-se criar uma regra inicial para bloquear todo o tráfego e, posteriormente, adicionar regras acima para permitir tráfegos específicos. No pfSense, novas regras são adicionadas em **Firewall > Rules**. Em cada uma das interfaces, clique em :arrow_heading_up: **Add**, altere o campo <ins>Action</ins> de Pass para Block e o campo <ins>Protocol</ins> de TCP para 'Any'. Ao final da página, clique em :floppy_disk: **Save** e confirme clicando em :white_check_mark: **Apply Changes**.
 
-
-Para permitir a instalação de pacotes e configuração inicial das demais máquinas sem que o firewall bloqueie o tráfego, navegue no menu em **Firewall > Rules**. Em cada uma das interfaces, clique em :arrow_heading_up: **Add**, altere o campo <ins>Protocol</ins> de TCP para Any e clique em :floppy_disk: **Save** ao final da página. Confirme clicando em :white_check_mark: **Apply Changes**.
