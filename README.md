@@ -240,6 +240,14 @@ Confirme as mudanças com :white_check_mark: **Apply Changes**.
   <img src="https://github.com/CamilaSCodes/projeto-2-bootcamp-infosec/blob/main/imagens_projeto2/firewall-virtual-IPs.png" alt="virtual IPs" />
 </p>
 
+### Configure os sistemas de detecção e prevenção de intrusões
+
+No menu do pfSense, navegue pelo caminho **System > Package Manager > Available Packages**. Procure pelo pacote `Snort` e instale sua versão mais atualizada.
+
+Para configurar e gerenciar o pacote Snort instalado, navegue em **Services > Snort > Interfaces** e clique em :heavy_plus_sign: **Add**. Escolha a opção `INTERNET (em0)` para <ins>Interface</ins> e adicione uma descrição. Na seção **Alert Settings**, habilite as opções `Send Alerts to System Log` e `Enable Packet Captures` para enviar os logs ao Graylog e ativar a captura de tráfego, respectivamente. Clique em :floppy_disk: **Save** ao final da página. 
+
+Ative o Snort nesta interface clicando no ícone :arrow_forward: abaixo de **Snort Status**. Adicione as configurações globais desejadas em **Services > Snort > Global Settings**.
+
 ### Configure o Server
 
 Retorne ao VirtualBox e crie uma nova máquina virtual denominada **server** utilizando o arquivo .iso do Debian que foi previamente baixado.
@@ -670,3 +678,29 @@ No campo <ins>Regular Expression</ins>, adicione padrões sucessivos para extrai
 ```
 %{BASE10NUM:rule},%{DATA:UNWANTED},%{DATA:UNWANTED},%{DATA:UNWANTED},%{WORD:iface},%{WORD:motive},%{WORD:action},%{WORD:direction},%{BASE10NUM:ip_version},%{DATA:UNWANTED},%{DATA:UNWANTED},%{DATA:UNWANTED},%{DATA:UNWANTED},%{DATA:UNWANTED},%{DATA:UNWANTED},%{DATA:UNWANTED},%{WORD:protocol},%{DATA:UNWANTED},%{IPV4:source_ip},%{IPV4:destination_ip},%{BASE10NUM:source_port},%{BASE10NUM:destination_port}
 ```
+
+Altere a <ins>Condition</ins> para `Only attempt extraction if field contains string` e, no campo <ins>Field contains string</ins> abaixo, insira `filterlog`. Adicione um nome para o campo novo, um título para o extrator e ao final clique em `Create extractor`. 
+
+Utilizando o Graylog, os extractors criados podem ser utilizados para gerar Dashboards com informações valiosas. 
+
+Para isso, no menu, clique em **Dashboards** e depois em **Create new dashboard**. Localize o ícone de :heavy_plus_sign: o lado esquerdo do painel e clique nele. Ao abrir as opções, selecione `Aggregation`. Edite a agregação conforme necessário para obter as informações desejadas de forma ágil. Por exemplo, a agregação abaixo demonstra a relação entre bloqueios e permissões do pfSense em forma de porcentagem.
+
+<p align="center">
+  <img src="https://github.com/CamilaSCodes/projeto-2-bootcamp-infosec/blob/main/imagens_projeto2/graylog-dashboard.png" alt="dashboard no graylog usando extractor" />
+</p>
+
+### Configure o acesso remoto
+
+Finalizando as configurações do sistema, habilite o acesso remoto com o SSH. 
+
+Na interface do pfSense, navegue pelo menu **System > Advanced**. Navegue abaixo até **Secure Shell**, e em <ins>Secure Shell Server</ins> habilite a opção `Enable Secure Shell`. Clique em :floppy_disk: **Save** ao final da página. 
+
+Em cada uma das máquinas, execute o comando abaixo e garanta que o SSH está instalado. 
+
+```
+apt update
+apt install openssh-server
+```
+## Conclusão
+
+Em suma, a implementação meticulosa de medidas de segurança, como segmentação em zonas e a integração de múltiplas camadas de defesa, incluindo Firewall, IDS/IPS e WAF, demonstrou ser eficaz na proteção contra possíveis ameaças e ataques cibernéticos. A simulação realizada no Virtualbox, com quatro máquinas distintas - WAF, Server, Firewall e SIEM - ilustrou a aplicação prática dessas medidas. Todos os [requisitos](https://github.com/CamilaSCodes/projeto-2-bootcamp-infosec/edit/main/README.md#requisitos) implementados formam uma defesa sólida e abrangente, essencial para enfrentar os desafios constantes do cenário cibernético atual.
