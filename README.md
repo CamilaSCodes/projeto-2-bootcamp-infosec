@@ -586,8 +586,8 @@ Altere o conteúdo do arquivo para o seguinte:
 server {
         listen 443 ssl;
 
-        ssl_certificate /etc/nginx/certssl/example.crt;
-        ssl_certificate_key /etc/nginx/certssl/example.key;
+        ssl_certificate /usr/local/nginx/certssl/example.crt;
+        ssl_certificate_key /usr/local/nginx/certssl/example.key;
 
         server_name site.lab;
 
@@ -619,7 +619,7 @@ nano /usr/local/nginx/conf/nginx.conf
 E adicione o seguinte texto dentro do bloco `http`:
 
 ```
-include /etc/nginx/sites-enabled/*;
+include /usr/local/nginx/sites-enabled/*;
 ```
 
 Salve com `Ctrl+O` e confira se as configurações estão corretas executando: 
@@ -634,3 +634,39 @@ Por fim, recarregue o NGINX com as novas configurações.
 nginx -s reload
 ```
 
+### Facilite a leitura dos logs e crie dashboards no Graylog
+
+Volte ao Graylog e busque pela palavra **Modsecurity**. Clique em algum log e, dentro dele, clique em uma **message** e em `Create extractor`. Selecione a opção `Regular Expression` e clique em `Submit`. 
+
+No campo <ins>Regular Expression</ins>, para cada extractor, insira [expressões regulares](http://turing.com.br/material/regex/introducao.html) para extrair informações importantes do log com facilidade, como exemplo:
+
+
+- **IP do client**
+```
+^.*\[client\ (.*)\] ModSecurity.*$
+```
+
+- **ID da regra**
+```
+^.*\[client\ (.*)\] ModSecurity.*$
+```
+
+- **Código da ameaça**
+```
+^.*code (\d+).*$
+```
+
+- **Severidade da ameaça**
+```
+^.*\[severity\ \"(\d*)\"\]\ \[ver.*$
+```
+
+Altere a <ins>Condition</ins> para `Only attempt extraction if field contains string` e, no campo <ins>Field contains string</ins> abaixo, insira `ModSecurity:`. Adicione um nome para o campo novo, um título para o extrator e ao final clique em `Create extractor`. 
+
+Para os [logs do pfSense](https://docs.netgate.com/pfsense/en/latest/monitoring/logs/raw-filter-format.html), retorne para a página inicial do Graylog e procure pela palavra **filterlog**. Clique em algum log e, dentro dele, clique em uma **message** e em `Create extractor`. Selecione a opção `GROK pattern` e clique em `Submit`. 
+
+No campo <ins>Regular Expression</ins>, adicione padrões sucessivos para extrair informações importantes do log com facilidade. Como exemplo, o padrão abaixo remove informações desnecessárias e mostra os seguintes dados do log: número da regra, interface, motivo do log, ação do firewall, direção do tráfego, versão do IP, protocolo, IPs de origem e destino, portas de origem e destino.
+
+```
+%{BASE10NUM:rule},%{DATA:UNWANTED},%{DATA:UNWANTED},%{DATA:UNWANTED},%{WORD:iface},%{WORD:motive},%{WORD:action},%{WORD:direction},%{BASE10NUM:ip_version},%{DATA:UNWANTED},%{DATA:UNWANTED},%{DATA:UNWANTED},%{DATA:UNWANTED},%{DATA:UNWANTED},%{DATA:UNWANTED},%{DATA:UNWANTED},%{WORD:protocol},%{DATA:UNWANTED},%{IPV4:source_ip},%{IPV4:destination_ip},%{BASE10NUM:source_port},%{BASE10NUM:destination_port}
+```
