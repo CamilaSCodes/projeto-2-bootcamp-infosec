@@ -564,7 +564,7 @@ Por fim, recarregue o NGINX com as novas configurações executando o comando:
 nginx -s reload
 ```
 
-Para verificar se o WAF está operacional e se os logs estão sendo enviados corretamente para o Graylog, acesse a interface do WAF utilizando o IP traduzido [nesta](#traduza-os-IPs) etapa. Teste com algum ataque, como exemplo: 
+Para verificar se o WAF está operacional e se os logs estão sendo enviados corretamente para o Graylog, acesse a interface do WAF utilizando o IP traduzido [nesta etapa](#traduza-os-IPs). Teste com algum ataque, como exemplo: 
 
 ```
 http://192.168.0.110/?exec=/bin/bash
