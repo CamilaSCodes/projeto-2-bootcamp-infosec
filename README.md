@@ -75,10 +75,10 @@ No menu, vá para **Interfaces > Interface Assignments** e certifique-se de que 
 
 ### Configure o firewall
 
-Seguindo uma boa prática na configuração de firewalls, recomenda-se criar uma regra inicial para bloquear todo o tráfego e, posteriormente, adicionar regras acima para permitir tráfegos específicos. No pfSense, novas regras são adicionadas em **Firewall > Rules**. Em cada uma das interfaces, clique em :arrow_heading_up: **Add**, altere o campo <ins>Action</ins> de `Pass` para `Block` e o campo <ins>Protocol</ins> de `TCP` para `Any`. 
-
 > [!NOTE]
 > Em todas as regras criadas no pfSense, habilite a opção **Log packets that are handled by this rule**.
+
+Seguindo uma boa prática na configuração de firewalls, recomenda-se criar uma regra inicial para bloquear todo o tráfego e, posteriormente, adicionar regras acima para permitir tráfegos específicos. No pfSense, novas regras são adicionadas em **Firewall > Rules**. Em cada uma das interfaces, clique em :arrow_heading_up: **Add**, altere o campo <ins>Action</ins> de `Pass` para `Block` e o campo <ins>Protocol</ins> de `TCP` para `Any`. 
 
 Ao final da página, clique em :floppy_disk: **Save** e confirme clicando em :white_check_mark: **Apply Changes**.
 
@@ -242,7 +242,7 @@ Confirme as mudanças com :white_check_mark: **Apply Changes**.
 
 ### Configure o Server
 
-Retorne ao VirtualBox e crie uma nova máquina virtual denominada **server** utilizando o arquivo .iso do Debian 12, que foi previamente baixado.
+Retorne ao VirtualBox e crie uma nova máquina virtual denominada **server** utilizando o arquivo .iso do Debian que foi previamente baixado.
 
 Após concluir o processo de criação, acesse as configurações de rede do server e ajuste o adaptador da seguinte forma:
 
@@ -252,7 +252,7 @@ Após concluir o processo de criação, acesse as configurações de rede do ser
       
     - Nome: `DMZ`
 
-Inicie a máquina e prossiga com o processo de instalação do Debian, desconsiderando as configurações de rede. Finalizada a instalação, rode o seguinte comando para mudar o nome do host: 
+Inicie a máquina e prossiga com o processo de instalação do Debian, desconsiderando as configurações de rede. Finalizada a instalação, execute o seguinte comando para mudar o nome do host: 
 
 ```
 nano /etc/hostname
@@ -264,7 +264,7 @@ Substitua o conteúdo do arquivo pelo seguinte:
 server
 ```
 
-Salve com `Ctrl + O`. Para configurar o servidor DNS, rode o comando: 
+Salve com `Ctrl + O`. Para configurar o servidor DNS, execute o comando: 
 
 ```
 nano /etc/resolv.conf
@@ -277,7 +277,7 @@ nameserver 1.1.1.1
 nameserver 1.0.0.1
 ```
 
-Salve com `Ctrl + O`. Para configurar os hosts, rode o comando :
+Salve com `Ctrl + O`. Para configurar os hosts, execute o comando :
 
 ```
 nano /etc/hosts
@@ -295,7 +295,7 @@ ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ````
 
-Salve com `Ctrl + O`. Por fim, para configurar os IPs, rode o comando: 
+Salve com `Ctrl + O`. Por fim, para configurar os IPs, execute o comando: 
 
 ```
 nano /etc/network/interfaces
@@ -320,14 +320,14 @@ iface enp0s3 inet static
         gateway 172.100.1.10
 ```
 
-Salve com `Ctrl + O`. Rode os comandos para atualizar as configurações:
+Salve com `Ctrl + O`. Execute os comandos para atualizar as configurações:
 
 ```
 update-grub
 reboot
 ```
 
-Para instalar e ativar o servidor NGINX, rode os comandos: 
+Para instalar e ativar o servidor NGINX, execute os comandos: 
 
 ```
 apt update
@@ -348,7 +348,7 @@ Após concluir o processo de criação, acesse as configurações de rede do Gra
       
     - Nome: `DMZ`
 
-Inicie a máquina e prossiga com o processo de instalação do Debian, desconsiderando as configurações de rede. Finalizada a instalação, rode o seguinte comando para mudar o nome do host: 
+Inicie a máquina e prossiga com o processo de instalação do Debian, desconsiderando as configurações de rede. Finalizada a instalação, execute o seguinte comando para mudar o nome do host: 
 
 ```
 nano /etc/hostname
@@ -360,7 +360,7 @@ Substitua o conteúdo do arquivo pelo seguinte:
 graylog
 ```
 
-Salve com `Ctrl + O`. Para configurar o servidor DNS, rode o comando: 
+Salve com `Ctrl + O`. Para configurar o servidor DNS, execute o comando: 
 
 ```
 nano /etc/resolv.conf
@@ -373,7 +373,7 @@ nameserver 1.1.1.1
 nameserver 1.0.0.1
 ```
 
-Salve com `Ctrl + O`. Para configurar os hosts, rode o comando :
+Salve com `Ctrl + O`. Para configurar os hosts, execute o comando :
 
 ```
 nano /etc/hosts
@@ -391,7 +391,7 @@ ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ````
 
-Salve com `Ctrl + O`. Por fim, para configurar os IPs, rode o comando: 
+Salve com `Ctrl + O`. Por fim, para configurar os IPs, execute o comando: 
 
 ```
 nano /etc/network/interfaces
@@ -416,7 +416,7 @@ iface enp0s3 inet static
         gateway 172.100.1.10
 ```
 
-Salve com `Ctrl + O`. Rode os comandos para atualizar as configurações:
+Salve com `Ctrl + O`. Execute os comandos para atualizar as configurações:
 
 ```
 update-grub
@@ -441,4 +441,196 @@ Ao retornar à página inicial do Graylog e clicar em atualizar, os logs do pfSe
 <p align="center">
   <img src="https://github.com/CamilaSCodes/projeto-2-bootcamp-infosec/blob/main/imagens_projeto2/graylog-pfsense-logs.png" alt="logs do pfSense no Graylog" />
 </p>
+
+### Configure o WAF
+
+Retorne ao VirtualBox e crie uma nova máquina virtual denominada **WAF** utilizando o arquivo .iso do Debian que foi previamente baixado.
+
+Após concluir o processo de criação, acesse as configurações de rede do WAF e ajuste o adaptador da seguinte forma:
+
+- **Adaptador 1**:
+
+    - Conectado a: `Rede interna`
+      
+    - Nome: `DMZEXT`
+
+Inicie a máquina e prossiga com o processo de instalação do Debian, desconsiderando as configurações de rede. Finalizada a instalação, execute o seguinte comando para mudar o nome do host: 
+
+```
+nano /etc/hostname
+```
+
+Substitua o conteúdo do arquivo pelo seguinte:
+
+```
+server
+```
+
+Salve com `Ctrl + O`. Para configurar o servidor DNS, execute o comando: 
+
+```
+nano /etc/resolv.conf
+```
+
+Substitua o conteúdo do arquivo pelo seguinte:
+
+```
+nameserver 1.0.0.1
+nameserver 1.1.1.1
+```
+
+Salve com `Ctrl + O`. Para configurar os hosts, execute o comando :
+
+```
+nano /etc/hosts
+```
+
+Substitua o conteúdo do arquivo pelo seguinte:
+
+````
+127.0.0.1       localhost
+172.100.2.100   waf.lab waf
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+````
+
+Salve com `Ctrl + O`. Por fim, para configurar os IPs, execute o comando: 
+
+```
+nano /etc/network/interfaces
+```
+
+Substitua o conteúdo do arquivo pelo seguinte:
+
+```
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto enp0s3
+iface enp0s3 inet static
+        address 172.100.2.100/24
+        gateway 172.100.2.10
+```
+
+Salve com `Ctrl + O`. Execute os comandos para atualizar as configurações:
+
+```
+update-grub
+reboot
+```
+
+Instale o e configure o ModSecurity + NGINX seguindo as [instruções](https://kifarunix.com/install-modsecurity-3-with-nginx-on-debian-12/?expand_article=1).
+
+Para enviar os logs do WAF ao Graylog, execute o comando: 
+
+```
+nano /usr/local/nginx/conf/nginx.conf
+```
+
+No arquivo, abaixo de `error_log /var/log/nginx/error.log;` adicione o seguinte texto: 
+
+```
+access_log syslog:server=172.100.1.101:1514;  
+error_log syslog:server=172.100.1.101:1514;    
+```
+
+Salve com `Ctrl + O`. Confira se a configuração foi adicionada corretamente executando o comando: 
+
+```
+ nginx -t
+```
+
+Por fim, recarregue o NGINX com as novas configurações executando o comando: 
+
+```
+nginx -s reload
+```
+
+Para verificar se o WAF está operacional e se os logs estão sendo enviados corretamente para o Graylog, acesse a interface do WAF utilizando o IP traduzido [nesta](https://github.com/CamilaSCodes/projeto-2-bootcamp-infosec/edit/main/README.md#traduza-os-ips) etapa. Teste com algum ataque, como exemplo: 
+
+```
+http://192.168.0.110/?exec=/bin/bash
+```
+
+Caso tudo esteja funcionado de maneira correta, os logs do WAF devem aparecer na página inicial do Graylog. 
+
+<p align="center">
+  <img src="https://github.com/CamilaSCodes/projeto-2-bootcamp-infosec/blob/main/imagens_projeto2/graylog-WAF.png" alt="logs do WAF no Graylog" />
+</p>
+
+### Adicione um certificado SSL e configure o WAF como um proxy reverso
+
+Crie um certificado SSL auto assinado seguindo as [instruções](https://linuxize.com/post/creating-a-self-signed-ssl-certificate/).
+
+Configure o proxy reverso executando os comandos: 
+
+```
+mkdir /usr/local/nginx/sites-available
+cd /usr/local/nginx/sites-available
+nano site.lab_conf
+```
+
+Altere o conteúdo do arquivo para o seguinte: 
+
+```
+server {
+        listen 443 ssl;
+
+        ssl_certificate /etc/nginx/certssl/example.crt;
+        ssl_certificate_key /etc/nginx/certssl/example.key;
+
+        server_name site.lab;
+
+        location / {
+                proxy_pass http://172.100.1.100/;
+                proxy_set_header Host $http_host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+        }
+
+}
+```
+
+Salve com `Ctrl+O`. Feito isso, execute os comandos:
+
+```
+cd
+mkdir /usr/local/nginx/sites-enabled/
+ln -s /usr/local/nginx/sites-available/site.lab_conf /usr/local/nginx/sites-enabled/site.lab_conf
+```
+
+Execute o comando para editar o arquivo de configurações do NGINX:
+
+```
+nano /usr/local/nginx/conf/nginx.conf
+```
+
+E adicione o seguinte texto dentro do bloco `http`:
+
+```
+include /etc/nginx/sites-enabled/*;
+```
+
+Salve com `Ctrl+O` e confira se as configurações estão corretas executando: 
+
+```
+ nginx -t
+```
+
+Por fim, recarregue o NGINX com as novas configurações.
+
+```
+nginx -s reload
+```
 
