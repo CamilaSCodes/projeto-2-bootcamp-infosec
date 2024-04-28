@@ -564,7 +564,7 @@ Por fim, recarregue o NGINX com as novas configurações executando o comando:
 nginx -s reload
 ```
 
-Para verificar se o WAF está operacional e se os logs estão sendo enviados corretamente para o Graylog, acesse a interface do WAF utilizando o IP traduzido [nesta](https://github.com/CamilaSCodes/projeto-2-bootcamp-infosec?tab=readme-ov-file#traduza-os-ips) etapa. Teste com algum ataque, como exemplo: 
+Para verificar se o WAF está operacional e se os logs estão sendo enviados corretamente para o Graylog, acesse a interface do WAF utilizando o IP traduzido [nesta](#traduza-os-IPs) etapa. Teste com algum ataque, como exemplo: 
 
 ```
 http://192.168.0.110/?exec=/bin/bash
@@ -703,4 +703,4 @@ apt install openssh-server
 ```
 ## Conclusão
 
-Em suma, a implementação meticulosa de medidas de segurança, como segmentação em zonas e a integração de múltiplas camadas de defesa, incluindo Firewall, IDS/IPS e WAF, demonstrou ser eficaz na proteção contra possíveis ameaças e ataques cibernéticos. A simulação realizada no Virtualbox, com quatro máquinas distintas - WAF, Server, Firewall e SIEM - ilustrou a aplicação prática dessas medidas. Todos os [requisitos](https://github.com/CamilaSCodes/projeto-2-bootcamp-infosec/tree/main#requisitos) implementados formam uma defesa sólida e abrangente, essencial para enfrentar os desafios constantes do cenário cibernético atual.
+Em suma, a implementação meticulosa de medidas de segurança, como segmentação em zonas e a integração de múltiplas camadas de defesa, incluindo Firewall, IDS/IPS e WAF, demonstrou ser eficaz na proteção contra possíveis ameaças e ataques cibernéticos. A simulação realizada no Virtualbox, com quatro máquinas distintas - WAF, Server, Firewall e SIEM - ilustrou a aplicação prática dessas medidas. Todos os [requisitos](#requisitos) implementados formam uma defesa sólida e abrangente, essencial para enfrentar os desafios constantes do cenário cibernético atual.
