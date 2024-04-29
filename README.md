@@ -20,7 +20,7 @@ Além disso, o sistema conta com o mecanismo **DMZ** (Demilitarized Zone), onde 
 - Filtros de log e dashboards no SIEM
 
 ### Tecnologias
-![VirtualBox](https://img.shields.io/badge/VirtualBox-183A61?logo=virtualbox&logoColor=white&style=for-the-badge) ![Debian](https://img.shields.io/badge/Debian-D70A53?style=for-the-badge&logo=debian&logoColor=white) ![FreeBSD](https://img.shields.io/badge/-FreeBSD-%23870000?style=for-the-badge&logo=freebsd&logoColor=white)
+![VirtualBox](https://img.shields.io/badge/VirtualBox-183A61?logo=virtualbox&logoColor=white&style=for-the-badge) ![FreeBSD](https://img.shields.io/badge/-FreeBSD-%23870000?style=for-the-badge&logo=freebsd&logoColor=white) ![Debian](https://img.shields.io/badge/Debian-D70A53?style=for-the-badge&logo=debian&logoColor=white) ![pfSense Badge](https://img.shields.io/badge/pfSense-212121?logo=pfsense&logoColor=fff&style=for-the-badge) ![Graylog Badge](https://img.shields.io/badge/Graylog-FF3633?logo=graylog&logoColor=fff&style=for-the-badge) ![NGINX Badge](https://img.shields.io/badge/NGINX-009639?logo=nginx&logoColor=fff&style=for-the-badge)
 
 ## Passo a passo
 
