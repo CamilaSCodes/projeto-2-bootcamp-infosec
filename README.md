@@ -19,6 +19,9 @@ Além disso, o sistema conta com o mecanismo **DMZ** (Demilitarized Zone), onde 
 - Configuração de acesso remoto
 - Filtros de log e dashboards no SIEM
 
+### Tecnologias
+![VirtualBox](https://img.shields.io/badge/VirtualBox-183A61?logo=virtualbox&logoColor=white&style=for-the-badge) ![Debian](https://img.shields.io/badge/Debian-D70A53?style=for-the-badge&logo=debian&logoColor=white) ![FreeBSD](https://img.shields.io/badge/-FreeBSD-%23870000?style=for-the-badge&logo=freebsd&logoColor=white)
+
 ## Passo a passo
 
 ### Configure o ambiente
