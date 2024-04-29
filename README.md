@@ -251,6 +251,12 @@ Para configurar e gerenciar o pacote Snort instalado, navegue em **Services > Sn
 
 Ative o Snort nesta interface clicando no ícone :arrow_forward: abaixo de **Snort Status**. Adicione as configurações globais desejadas em **Services > Snort > Global Settings**.
 
+As configurações escolhidas podem ser baixadas e atualizadas através da opção seguinte no menu, **Services > Snort > Updates**.
+
+<p align="center">
+  <img src="https://github.com/CamilaSCodes/projeto-2-bootcamp-infosec/blob/main/imagens_projeto2/firewall-snort.png" alt="snort no pfSense" />
+</p>
+
 ### Configure o Server
 
 Retorne ao VirtualBox e crie uma nova máquina virtual denominada **server** utilizando o arquivo .iso do Debian que foi previamente baixado.
